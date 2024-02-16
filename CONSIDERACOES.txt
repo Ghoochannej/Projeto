@@ -1,0 +1,15 @@
+CONSIDERAÇÕES
+
+Minha intenção era fazer o scrap da tabela inteira e iterar linha a linha tratando a string através de regex, porém tive dificuldade para separar o que era EMPRESA com o que era ATIVO, devido às inúmeras possibilidades de ambos os casos.
+
+Então parti para pegar os valores direto na "fonte" (sem a necessidade de tratar string), mas nesse caso a dificuldade seria as empresas com diversos ativos, pois elas teriam diversos <td> e eu não conseguiria usar um índice.
+
+A solução foi pegar uma lista (mesmo quando fosse um valor único) e através de um contador e uma variável temp concatenar esses valores numa variável definitiva.
+
+PONTOS A MELHORAR
+
+O código funciona com uma exceptionem seu fluxo, que ocorre a cada vez que o código passa para a prox lista de empresas, tempo da exception (+- 10s) * número de ocorrências (11) = 110s em que o código fica parado esperando a exception acontecer, basicamente sem fazer nada.
+
+Solução 1 - Alterar de alguma forma o tempo de timeout padrão para exceptions no python -> Eu pesquisei algumas coisas nesse sentido mas não encontrei nada efetivo.
+
+Solução 2 - Não usar try catch, mas sim if else -> O problema é o tempo da exception, pensando nisso eu tentei usar if driver.find_element(...).size != 0 mas não deu certo e não quis alterar um código que já estava funcional.
