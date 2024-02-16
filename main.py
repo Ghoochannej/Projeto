@@ -1,6 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
+import os
+
+path = str(os.getcwd())
 ATIVO = ''
 contadorAtivos = 1 # ex: BHIA3, RZAT11, GRWA11, etc...
 contadorProdutos = 1 # ex: Bens Industriais, Consumo Cíclico, etc... 
@@ -47,6 +50,6 @@ for item in driver.find_elements(By.CLASS_NAME, 'list-companies'):
             break
     contadorProdutos = contadorProdutos + 1
 
-df.to_csv('arquivo.csv', index=False)
+df.to_csv(path+r'\arquivo.csv', index=False)
 # momento de criação do .csv com base no dataframe populado
 driver.close()
